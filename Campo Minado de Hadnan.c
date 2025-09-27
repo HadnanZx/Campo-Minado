@@ -183,6 +183,7 @@ int main (){
    //Encerramento
    printf("\nJogo encerrado.\n");
    printf("Tabuleiro final:\n");
+
    //Mostra o tabuleiro Real depois do termino do jogo.
    for(int i = 0; i < tamanho; i++) {
       for(int j = 0; j < tamanho; j++){
