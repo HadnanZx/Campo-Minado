@@ -3,11 +3,13 @@
 
 int main (){
     int tamanho,qntminas;
-    int tabu[tamanho][tamanho];
+    int linha, coluna, h;
 
     printf("\t  CAMPO MINADO\n");
     printf("Digite o tamanho do tabuleiro (5 a 100): ");
     scanf("%d", &tamanho);
+
+    int tabu[tamanho][tamanho];
 
     if(tamanho < 5 || tamanho > 100){
         printf("Tamanho invalido.\n");
@@ -33,7 +35,6 @@ int main (){
     }
 
     for(int h = 0; h < qntminas; h++){
-        int linha, coluna;
         printf("Digite onde a mina %d sera posicionada (linha e coluna): ", h + 1);
         scanf("%d %d", &linha, &coluna);
 
@@ -42,6 +43,28 @@ int main (){
             h--;
             continue;
         }
-    }
+
+        linha--;
+        coluna--;
+
+    if(tabu[linha][coluna] == -1){
+        printf("Ja tem uma mina nessa posicao!");
+        h--;
+        continue;
+     }
+
+       tabu[linha][coluna] = -1;
+  }
+
+   printf("\nTabuleiro inicial:\n");
+   for(int i = 0; i < tamanho; i++){
+      for(int j = 0; j < tamanho ; j++){
+         printf("%2d ", tabu[i][j]);
+      }
+      printf("\n");
+   }
+
+
+
 }
 
