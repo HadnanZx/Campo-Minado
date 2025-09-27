@@ -93,25 +93,25 @@ int main (){
       }
    }
     //Mostra o tabuleiro por de baixo dos panos, com as minas ja incluidas e os valores das minas ao redor das casas
-    printf("\nTabuleiro inicial:\n");
+    printf("\nTabuleiro Real:\n");
     for(int i = 0; i < tamanho; i++){
       for(int j = 0; j < tamanho ; j++){
          printf("%2d ", tabu[i][j]);
       }
       printf("\n");
    }
-
+    //Guarda casa ja revelada
     int tabuEstado[tamanho][tamanho]; // 0 = Tá fechado, 1 = Tá aberto
 
-    for (int i = 0; i < tamanho; i++) {
-       for (int j = 0; j < tamanho; j++) {
+    for(int i = 0; i < tamanho; i++){
+       for(int j = 0; j < tamanho; j++){
          tabuEstado[i][j] = 0; // Tudo fechado no inicio
       }
    }
 
     int jogoAtivo = 1;
-
-    while (jogoAtivo) {
+    //Enquanto jogoAtivo for 1, o jogo roda, se cair em uma mina ou vençer, ele vai virar 0 e parar
+    while(jogoAtivo){
         printf("\nTabuleiro:\n   "); // Espaço inicial pra alinhamento
 
         // Imprime números das colunas
@@ -123,7 +123,7 @@ int main (){
         // Imprime cada linha
         for(int i = 0; i < tamanho; i++){
             printf("%2d ", i + 1); // Cabeçalho da linha
-            for (int j = 0; j < tamanho; j++){
+            for(int j = 0; j < tamanho; j++){
               if(tabuEstado[i][j] == 0){
                  printf(" O ");
               }else{
@@ -134,57 +134,59 @@ int main (){
 }
 
 
-    // Usuário escolhe a posição
+    // Usuário escolhe a posição onde quer arriscar
     printf("Digite a linha e coluna para revelar: ");
     scanf("%d %d", &linha, &coluna);
 
+    //Converte de 1 a N, para 0 a N-1, deixando a tabela mais coeza
     linha--;
     coluna--;
 
      // Verificação da validade
-    if (linha < 0 || linha >= tamanho || coluna < 0 || coluna >= tamanho) {
+    if(linha < 0 || linha >= tamanho || coluna < 0 || coluna >= tamanho){
         printf("Posição inválida.\n");
         continue;
     }
 
-
-    if (tabuEstado[linha][coluna] == 1) {
-       printf("Essa posição já foi revelada. Escolha outra.\n");
+    //impede que o jogador jogue duas vezes na mesma posição
+    if(tabuEstado[linha][coluna] == 1){
+       printf("\nEssa posição já foi revelada. Escolha outra.\n");
        continue;
     }
 
-    // Revela a posição
+    // Revela a posição marcada pelo usuario
     tabuEstado[linha][coluna] = 1;
 
     // Caso caia em uma mina
-    if (tabu[linha][coluna] == -1) {
+    if(tabu[linha][coluna] == -1){
         printf("BOOM! Caiu em uma mina. Game Over para você.\n");
         jogoAtivo = 0;
     }
-
+    //calcula a quantidade de casas que nao tem minas, o jogador já abriu
     int casasReveladas = 0;
     int totalCasas = tamanho * tamanho - qntminas;
 
-    for (int i = 0; i < tamanho; i++) {
-       for (int j = 0; j < tamanho; j++) {
-         if (tabuEstado[i][j] == 1 && tabu[i][j] != -1) {
+    //Conta a quantidade de casas sem minas que ja foram selecionadas
+    for(int i = 0; i < tamanho; i++){
+       for(int j = 0; j < tamanho; j++){
+         if(tabuEstado[i][j] == 1 && tabu[i][j] != -1){
             casasReveladas++;
          }
       }
     }
-
-    if (casasReveladas == totalCasas) {
+    //Se a quantidade de casas selecionadas for igual o total de casas sem as minas, o jogador vence
+    if(casasReveladas == totalCasas){
        printf("\nPARABÉNS! Você venceu!\n");
        jogoAtivo = 0;
      }
    }
-
+   //Encerramento
    printf("\nJogo encerrado.\n");
    printf("Tabuleiro final:\n");
-
+   //Mostra o tabuleiro Real depois do termino do jogo.
    for(int i = 0; i < tamanho; i++) {
-      for (int j = 0; j < tamanho; j++) {
-         if (tabu[i][j] == -1) {
+      for(int j = 0; j < tamanho; j++){
+         if(tabu[i][j] == -1){
             printf(" * ");
         }else{
             printf(" %d ", tabu[i][j]);
