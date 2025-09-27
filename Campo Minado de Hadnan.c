@@ -34,7 +34,7 @@ int main (){
         }
     }
 
-    for(int h = 0; h < qntminas; h++){
+   for(int h = 0; h < qntminas; h++){
         printf("Digite onde a mina %d sera posicionada (linha e coluna): ", h + 1);
         scanf("%d %d", &linha, &coluna);
 
@@ -55,6 +55,37 @@ int main (){
 
        tabu[linha][coluna] = -1;
   }
+
+    for (int linhaAtual = 0; linhaAtual < tamanho; linhaAtual++) {
+       for (int colunaAtual = 0; colunaAtual < tamanho; colunaAtual++) {
+
+         if (tabu[linhaAtual][colunaAtual] == -1) {
+            continue; // é mina,
+         }
+
+         int mnRedor = 0;
+
+         // Percorre os vizinhos
+         for (int dslLinha = -1; dslLinha <= 1; dslLinha++) {
+             for (int dslColuna = -1; dslColuna <= 1; dslColuna++) {
+
+                int vzLinha = linhaAtual + dslLinha;
+                int vzColuna = colunaAtual + dslColuna;
+
+                // Checa se tá dentro do tabuleiro
+                if (vzLinha >= 0 && vzLinha < tamanho &&
+                    vzColuna >= 0 && vzColuna < tamanho) {
+
+                    if (tabu[vzLinha][vzColuna] == -1) {
+                        mnRedor++;
+                    }
+                }
+            }
+        }
+
+        tabu[linhaAtual][colunaAtual] = mnRedor;
+    }
+}
 
    printf("\nTabuleiro inicial:\n");
    for(int i = 0; i < tamanho; i++){
