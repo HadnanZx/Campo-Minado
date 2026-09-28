@@ -1,34 +1,22 @@
-# 🎮 Campo-Minado
+# Campo-Minado
 
-> Primeiro jogo programado em C — um clássico reimaginado!
+Jogo de tabuleiro desenvolvido em C como projeto acadêmico. O jogador define o tamanho do tabuleiro e a quantidade de minas, posiciona-as manualmente e tenta revelar todas as casas sem cair em uma mina.
 
----
+## Como Jogar
 
-## 📋 Sobre
+1. Defina o tamanho do tabuleiro (entre 5 e 100)
+2. Escolha a quantidade de minas (menor que o total de casas)
+3. Posicione as minas informando linha e coluna
+4. Revele casas tentando evitar as minas
+5. Vença ao revelar todas as casas sem minas
 
-Campo-Minado é um jogo de tabuleiro desenvolvido em **C** como projeto acadêmico. O jogador define o tamanho do tabuleiro e a quantidade de minas, posiciona-as manualmente e tenta revelar todas as casas sem cair em uma mina.
+## Tecnologias
 
----
+- C
+- stdio.h
+- locale.h
 
-## 🎯 Como Jogar
-
-1. **Defina o tamanho** do tabuleiro (entre 5 e 100)
-2. **Escolha a quantidade de minas** (menor que o total de casas)
-3. **Posicione as minas** informando linha e coluna
-4. **Revele casas** tentando evitar as minas
-5. **Vença** ao revelar todas as casas sem minas!
-
----
-
-## 🛠️ Tecnologias
-
-- **C** — Linguagem de programação
-- **stdio.h** — Entrada e saída padrão
-- **locale.h** — Suporte a localização (acentos)
-
----
-
-## 📦 Compilação e Execução
+## Compilação e Execução
 
 ### Usando GCC:
 
@@ -40,12 +28,10 @@ gcc "Campo Minado de Hadnan.c" -o campo-minado
 ### Usando VSCode:
 
 1. Abra a pasta no VSCode
-2. Instale a extensão **C/C++** da Microsoft
-3. Compile com `Ctrl+Shift+B` ou use o terminal integrado
+2. Instale a extensão C/C++ da Microsoft
+3. Compile com Ctrl+Shift+B ou use o terminal integrado
 
----
-
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 Campo-Minado/
@@ -55,24 +41,14 @@ Campo-Minado/
 └── .gitattributes              # Configuração do Git
 ```
 
----
-
-## 📝 Regras do Jogo
+## Regras do Jogo
 
 - O tabuleiro é uma matriz quadrada de tamanho N×N (5 ≤ N ≤ 100)
 - As minas são posicionadas manualmente pelo jogador
 - Cada casa mostra o número de minas nas casas vizinhas
-- Revelar uma mina = **Game Over** 💥
-- Revelar todas as casas sem minas = **Vitória** 🏆
+- Revelar uma mina encerra o jogo
+- Revelar todas as casas sem minas resulta em vitória
 
----
+## Autor
 
-## 👨‍💻 Autor
-
-**Hadnan Menezes** — Estudante de ADS no IFBA
-
----
-
-<div align="center">
-  <i>Desenvolvido com ☕ e muita paciência no 1º semestre de ADS</i>
-</div>
+Hadnan Menezes — Estudante de ADS no IFBA
